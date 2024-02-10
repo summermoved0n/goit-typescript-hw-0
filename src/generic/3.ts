@@ -3,8 +3,15 @@
   Використовуйте generics, щоб вказати, що ці об'єкти можуть бути будь-якого типу.
 */
 
-function merge (objA, objB) {
-  return Object.assign(objA, objB);
+type DuoType = any;
+
+function merge<TypeA, TypeB>(objA: TypeA, objB: TypeB) {
+  return Object.assign({}, objA, objB);
 }
 
-export {}
+const merged = merge<DuoType, DuoType>({ name: "Alisa" }, { age: 28 });
+
+console.log(merged.name);
+console.log(merged.age);
+
+export {};
