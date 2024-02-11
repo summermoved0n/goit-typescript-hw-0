@@ -14,12 +14,23 @@ type User = {
   password: string;
 };
 
-type UserUpdate = Pick<User, "email" | "password">;
-
-function createOrUpdateUser(initialValues: UserUpdate) {
+function createOrUpdateUser(initialValues: Partial<User>): User {
   // Оновлення користувача
+  const defaultUser: User = {
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+  };
+
+  return { ...defaultUser, ...initialValues };
 }
 
-createOrUpdateUser({ email: "user@mail.com", password: "password123" });
+const updatedUser = createOrUpdateUser({
+  email: "user@mail.com",
+  password: "password123",
+});
+
+console.log(updatedUser);
 
 export {};
